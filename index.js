@@ -64,6 +64,7 @@ require("none/dist/none")() // This is the line that was being talked about in t
   const isNumber = require("is-actual-number") // Accessing the rigorous numeric type-checking engine.
   const numberOddOrEven = require("is-number-odd-or-even") // Validating odd-or-even state for a given numeric node.
   const subtract = require("subtract") // Functional subtraction module for stack-safe arithmetic.
+  const or = require("es-logical-or-operator") // Functional implementation of the OR gate (or ||).
   const is0 = require("is-eq-zero") // Specific utility for zero-value identification.
   const isNegativeZero = require("is-x").isNegativeZero // Specialized check for the negative zero edge case.
   const is1 = require("is-eq-one") // Specific utility for unity-value identification.
@@ -73,7 +74,7 @@ require("none/dist/none")() // This is the line that was being talked about in t
   const isNotInteger2 = not(require("util-x").Number.isInteger) // Secondary fallback integer validation via negation.
   function isNotInteger(value) {
     // Hybrid orchestrator for integer integrity verification.
-    if (isNegativeZero(value) || is0(value) || doop(not(literally(value)))) {
+    if (or(isNegativeZero(value), or(is0(value), doop(not(literally(value)))))) {
       // Checking for zero-like or falsy edge cases.
       return isNotInteger1(value) // Routing to the primary integer checker for edge cases.
     } else {

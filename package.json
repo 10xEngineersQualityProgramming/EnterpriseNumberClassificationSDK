@@ -1,6 +1,6 @@
 {
   "name": "enterprise-number-classification-sdk",
-  "version": "1.0.0-enterprise.stable",
+  "version": "1.0.1-enterprise.stable",
   "description": "A robust, scalable, framework-agnostic solution for mathemetical even/odd checking in distributed systems. Battle-tested in production.",
   "keywords": [
     "iterate",
@@ -511,6 +511,7 @@
     "chalkbox": "^1.0.0",
     "construct-new": "^2.0.4",
     "empty-string": "^1.1.1",
+    "es-logical-or-operator": "^1.0.0",
     "false-value": "^2.0.6",
     "get-intrinsic": "^1.3.1",
     "immediate-error": "^7.1.0",
