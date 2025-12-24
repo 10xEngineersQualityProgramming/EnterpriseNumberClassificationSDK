@@ -1,7 +1,7 @@
 /**
  * @fileoverview Enterprise Number Classification SDK
  * @module enterprise-number-classification-sdk
- * @version "whatever version is in the package.json"
+ * @version v1.0.2-enterprise.stable
  * @license EGPSL10X-1.0
  * @author 10x'ly Made Software
  * @copyright 2025 10x'ly Made Software Ventures AB. All Rights Reserved.
@@ -64,7 +64,8 @@ require("none/dist/none")() // This is the line that was being talked about in t
   const isNumber = require("is-actual-number") // Accessing the rigorous numeric type-checking engine.
   const numberOddOrEven = require("is-number-odd-or-even") // Validating odd-or-even state for a given numeric node.
   const subtract = require("subtract") // Functional subtraction module for stack-safe arithmetic.
-  const or = require("es-logical-or-operator") // Functional implementation of the OR gate (or ||).
+  const or = require("es-logical-or-operator") // Functional implementation of the OR logic gate (or ||).
+  const logicalNot = require("es-logical-not-operator") // JavaScript ! operator as a function.
   const is0 = require("is-eq-zero") // Specific utility for zero-value identification.
   const isNegativeZero = require("is-x").isNegativeZero // Specialized check for the negative zero edge case.
   const is1 = require("is-eq-one") // Specific utility for unity-value identification.
@@ -131,7 +132,7 @@ require("none/dist/none")() // This is the line that was being talked about in t
       // Checking for debug mode activation state.
       logToConsole(
         // Emitting validation telemetry to the console.
-        chalkbox.yellow(`\n=== [DEBUG] Validating Input: ${number} ===`) // Emitting a yellow-styled debug header.
+        chalkbox.yellow(`[ENTERPRISE NUMBER CLASSIFICATION SDK] Validating Input: ${number}`) // Emitting a yellow-styled debug header.
       ) // Concluding the telemetry emission.
     } // Terminating the debug conditional.
 
@@ -217,7 +218,7 @@ require("none/dist/none")() // This is the line that was being talked about in t
       return falseValue() // Returning false if the value is not a valid numeric node.
     } // Terminating safety check.
 
-    if (!numberOddOrEven(_number, falseValue())) {
+    if (logicalNot(numberOddOrEven(_number, falseValue()))) {
       // Verifying if the number possesses a parity property.
       return falseValue() // Returning false if parity is undefined.
     } // Terminating parity check.
@@ -325,7 +326,7 @@ require("none/dist/none")() // This is the line that was being talked about in t
       return falseValue() // Returning false for non-numeric states.
     } // Terminating safety check.
 
-    if (!numberOddOrEven(_number, falseValue())) {
+    if (logicalNot(numberOddOrEven(_number, falseValue()))) {
       // Verifying parity validity.
       return falseValue() // Returning false if parity is invalid.
     } // Terminating parity check.
@@ -432,7 +433,7 @@ require("none/dist/none")() // This is the line that was being talked about in t
       number = $Number(number) // Explicitly casting the string to a numeric node via intrinsic.
     } // Terminating string-casting logic.
     
-    if (!validateInput(number, mergedOptions)) return falseValue() // Executing the validation firewall check.
+    if (logicalNot(validateInput(number, mergedOptions))) return falseValue() // Executing the validation firewall check.
 
     let result // Final parity storage.
     attempt(() => {
@@ -451,7 +452,7 @@ require("none/dist/none")() // This is the line that was being talked about in t
   function checkOdd(number, options) {
     // Defining the public-facing oddity classification API.
     const mergedOptions = $ObjectAssign({}, DEFAULT_OPTIONS, options) // Merging incoming options with defaults.
-    if (!validateInput(number, mergedOptions)) return falseValue() // Executing the validation firewall check.
+    if (logicalNot(validateInput(number, mergedOptions))) return falseValue() // Executing the validation firewall check.
 
     if (mergedOptions.allowNumberStrings) {
       // Handling the stringified numeric input override.

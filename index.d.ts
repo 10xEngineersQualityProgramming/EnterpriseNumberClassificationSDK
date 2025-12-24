@@ -5,26 +5,6 @@
 
 declare module "enterprise-number-classification-sdk" {
   /**
-   * Configuration manifest for numeric classification operations.
-   */
-  export interface ClassificationOptions {
-    /** Suppress non-numeric errors and return falseValue. */
-    throwOnNonNumber?: boolean
-    /** Suppress non-integer errors and return falseValue. */
-    throwOnNonInteger?: boolean
-    /** Suppress non-finite errors and return falseValue. */
-    throwOnNonFinite?: boolean
-    /** Suppress NaN-state errors and return falseValue. */
-    throwOnNaN?: boolean
-    /** * Permits the intake of stringified numeric nodes.
-     * Note: Enabling this triggers intrinsic casting logic.
-     */
-    allowNumberStrings?: boolean
-    /** Activates chromatic telemetry emission to the enterprise console. */
-    enableDebug?: boolean
-  }
-
-  /**
    * Evaluates the parity state of a numeric node to determine evenness.
    * Utilizes a dual-path execution strategy (Recursive + String-Parsing Fallback).
    * * @param number The numeric entity to be classified.
@@ -33,7 +13,22 @@ declare module "enterprise-number-classification-sdk" {
    */
   export function checkEven(
     number: number | string | any,
-    options?: ClassificationOptions
+    options?: {
+      /** Suppress non-numeric errors and return falseValue. */
+      throwOnNonNumber?: boolean
+      /** Suppress non-integer errors and return falseValue. */
+      throwOnNonInteger?: boolean
+      /** Suppress non-finite errors and return falseValue. */
+      throwOnNonFinite?: boolean
+      /** Suppress NaN-state errors and return falseValue. */
+      throwOnNaN?: boolean
+      /** * Permits the intake of stringified numeric nodes.
+       * Note: Enabling this triggers intrinsic casting logic.
+       */
+      allowNumberStrings?: boolean
+      /** Activates chromatic telemetry emission to the enterprise console. */
+      enableDebug?: boolean
+    }
   ): boolean
 
   /**
